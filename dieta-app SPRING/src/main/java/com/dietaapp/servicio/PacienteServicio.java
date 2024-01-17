@@ -17,9 +17,14 @@ public class PacienteServicio implements  IPacienteServicio{
     return pacienteRepositorio.findAll();
   }
 
+  public List<Paciente> listarprimerNombre(String primer_nombre){
+    return pacienteRepositorio.primerNombre(primer_nombre);
+  }
+
   @Override
   public Paciente buscarPorId(Integer id) {
     Paciente paciente = pacienteRepositorio.findById(id).orElse(null);
+
     return paciente;
   }
 
@@ -32,5 +37,7 @@ public class PacienteServicio implements  IPacienteServicio{
   public void eliminar(Integer id) {
     this.pacienteRepositorio.deleteById(id);
   }
+
+
 
 }

@@ -4,10 +4,7 @@ import com.dietaapp.modelo.Paciente;
 import com.dietaapp.servicio.PacienteServicio;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,11 +21,14 @@ public class InicioController {
     @GetMapping("/pacientes")
     public List<Paciente> getPaciente(){
         List<Paciente> listaPacientes = this.pacienteServicio.listar();
-        if (listaPacientes.size() == 0 || listaPacientes.isEmpty()){
-            logger.info("Saludos desde el controlador");
-            return null;
-        }
+
         logger.info("Saludos desde el controlador");
-        return pacienteServicio.listar();
+        return listaPacientes;
+    }
+    @GetMapping("/pacientes/{primer_nombre}")
+    public List<Paciente> getPacienteByName(@PathVariable String primer_nombre){
+        List<Paciente> listaPacientes = this.pacienteServicio.listarprimerNombre(primer_nombre);
+        logger.info("Listando por nombre");
+        return listaPacientes;
     }
 }
