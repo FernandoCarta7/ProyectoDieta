@@ -30,8 +30,6 @@ export class ListaPacientesComponent {
     private enrutador: Router) { };
   private documento: Document = new Document;
   
-
-  loading: boolean = true;
   ngOnInit() {
     //Cargamos los productos
     this.getPacientes();
@@ -58,13 +56,10 @@ export class ListaPacientesComponent {
     
   }
 
-  public imprimirInput(){
-    
-    console.log(this.value)
+
+  goToRegistrarPaciente() {
+    this.enrutador.navigate(['registrar-paciente']);
   }
-
-  
-
   
 
   }
