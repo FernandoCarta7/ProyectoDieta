@@ -22,7 +22,7 @@ export class PacienteService{
         return this.http.get<Paciente[]>(`${this.urlBase}/${primer_nombre}`);
     }
 
-    addPaciente(paciente : Paciente) : Observable<Object>{
+    agregarPaciente(paciente : Paciente) : Observable<Object>{
         return this.http.post(this.urlBase,paciente);
     }
 

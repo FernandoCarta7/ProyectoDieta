@@ -5,10 +5,13 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 import { PacienteService } from './clases/Paciente.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
     {provide : PacienteService}, 
-    provideHttpClient()]
+    provideHttpClient(),
+    provideAnimationsAsync()
+  ]
 };

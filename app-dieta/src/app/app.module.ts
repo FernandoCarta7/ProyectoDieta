@@ -9,6 +9,8 @@ import { HttpClient } from "@angular/common/http";
 import { provideHttpClient } from '@angular/common/http';
 import { PacienteService } from "./clases/Paciente.service";
 import { NgModel } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CommonModule } from "@angular/common";
 
 
 
@@ -21,11 +23,15 @@ import { NgModel } from "@angular/forms";
     imports: [
         AppComponent,
         BrowserModule,
+        BrowserAnimationsModule,
+        NgModule,
+        
         NgModel
 
     ],
     providers: [AppComponent, PacienteService, provideHttpClient()],
-    bootstrap: []
+    bootstrap: [NgModel, CommonModule],
+    exports : [NgModel]
 })
 
 export class AppModule { }

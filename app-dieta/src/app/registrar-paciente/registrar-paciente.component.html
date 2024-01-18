@@ -1,1 +1,213 @@
-<p>registrar-paciente works!</p>
+<div class="card">
+    <p-panel>
+
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center gap-2">
+                <span class="font-bold">Registrar paciente</span>
+            </div>
+        </ng-template>
+        <!--DATOS DE CONTACTO-->
+        <p-panel [toggleable]="true">
+            <p-header>
+                <h4>Datos de contacto</h4>
+            </p-header>
+            <!--NOMBRES Y APELLIDOS-->
+
+
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-user"></i>
+                </p-inputGroupAddon>
+                <p-inputGroup>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="primerNombre"
+                        placeholder="**Primer Nombre" />
+                </p-inputGroup>
+                
+                <p-inputGroup>
+
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="segundoNombre"
+                        placeholder="Segundo Nombre" />
+                </p-inputGroup>
+
+
+            </p-inputGroup>
+            <br>
+            <p-inputGroup>
+                
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="primerApellido"
+                        placeholder="**Primer Apellido" />
+                </p-inputGroup>
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="segundoApellido"
+                        placeholder="Segundo Apellido" />
+
+                </p-inputGroup>
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!primerNombre">
+
+                    </span>
+                </p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!segundoNombre">
+
+                    </span>
+                </p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!primerApellido">
+
+                    </span>
+                </p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!segundoApellido">
+
+                    </span>
+                </p-inputGroup>
+            </p-inputGroup>
+
+
+
+
+            <br>
+
+            <!--Fecha de nacimiento-->
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-calendar"></i>
+                </p-inputGroupAddon>
+                <p-inputGroup>
+                    <p-calendar [(ngModel)]="fechaNacimiento" [touchUI]="true" [readonlyInput]="true"
+                        placeholder="**Fecha nacimiento" aria-required="true"></p-calendar>
+                </p-inputGroup>
+
+                <p-inputGroup aria-required="true">
+                    <div class="card flex justify-content-center">
+                        <p-dropdown [options]="generos" [(ngModel)]="genero" [style]="{'width':'15rem'}"
+                            aria-required="true" placeholder="**Genero"></p-dropdown>
+                    </div>
+                </p-inputGroup>
+
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="correo"
+                        placeholder="**Correo electronico" />
+                </p-inputGroup>
+            </p-inputGroup>
+            <br>
+
+
+            <p-footer>
+                <div *ngIf="primerNombre && correo && fechaNacimiento && genero">
+                    <p-button type="submit" (onClick)="addPaciente()" class="mx-2" label="Guardar paciente"
+                        icon="pi pi-plus"></p-button>
+                </div>
+                <p>**Campos obligatorios</p>
+                <div>
+                    <span *ngIf="!primerNombre">Hace falta el campo obligatorio primer nombre</span>
+                </div>
+                <div>
+                    <span *ngIf="!primerApellido">Hace falta el campo obligatorio primer apellido,</span>
+                </div>
+                <div>
+                    <span *ngIf="!fechaNacimiento">Hace falta el campo obligatorio fecha nacimiento,</span>
+                </div>
+                <div>
+                    <span *ngIf="!correo">Hace falta el campo obligatorio correo</span>
+                </div>
+                <div >
+                    <span *ngIf="!genero">Hace falta el campo obligatorio genero</span>
+                </div>
+
+            </p-footer>
+
+
+
+        </p-panel>
+        <br>
+
+        <!--HISTORIA MEDICA-->
+        <p-panel [toggleable]="true">
+            <p-header>
+                <h4>Historia del paciente</h4>
+            </p-header>
+            your content
+
+            <p-footer>
+                <div>
+                    <p-button class="mx-2" label="Guardar historia" icon="pi pi-plus"></p-button>
+                </div>
+
+            </p-footer>
+        </p-panel>
+
+
+        <ng-template pTemplate="footer">
+
+            <div>
+                <p-button (onClick)="irListaPacientes()" class="mx-2" label="Regresar" icon="pi pi-arrow-left"
+                    severity="danger"></p-button>
+            </div>
+        </ng-template>
+
+        <!--
+
+    <p-inputGroup>
+        <p-inputGroupAddon>
+                <i class="pi pi-users"></i>
+            </p-inputGroupAddon>
+            <input pInputText type="text" placeholder="Normal" [(ngModel)]="primerNombre"/>
+            <p-inputGroupAddon>
+                <i class="pi pi-users"></i>
+            </p-inputGroupAddon>
+            <input pInputText type="text" placeholder="Normal" [(ngModel)]="segundoNombre" />
+            <p-inputGroupAddon>
+                <i class="pi pi-users"></i>
+            </p-inputGroupAddon>
+            <input pInputText type="text" placeholder="Normal" [(ngModel)]="primerNombre"/>
+            <p-inputGroupAddon>
+                <i class="pi pi-users"></i>
+            </p-inputGroupAddon>
+            <input pInputText type="text" placeholder="Normal" [(ngModel)]="segundoNombre" />
+        </p-inputGroup>
+    -->
+    </p-panel>
+
+    <p-panel [toggleable]="true">
+
+        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+            <div class="text-center mb-5">
+
+                <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
+                <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+                <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
+            </div>
+
+            <div>
+                <label for="email1" class="block text-900 font-medium mb-2" aria-required="true">Email</label>
+                <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
+
+                <label for="password1" class="block text-900 font-medium mb-2" aria-required="true">Password</label>
+                <input id="password1" type="password" placeholder="Password" pInputText class="w-full mb-3">
+
+
+
+                <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full"></button>
+            </div>
+        </div>
+    </p-panel>
+</div>

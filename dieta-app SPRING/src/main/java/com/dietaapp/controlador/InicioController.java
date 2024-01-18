@@ -31,4 +31,9 @@ public class InicioController {
         logger.info("Lista de pacientes filtrado por el primer nombre");
         return listaPacientes;
     }
+    @PostMapping("/pacientes")
+    public Paciente agregarPaciente(@RequestBody Paciente paciente){
+        logger.info("Paciente agregado");
+        return this.pacienteServicio.guardar(paciente);
+    }
 }
