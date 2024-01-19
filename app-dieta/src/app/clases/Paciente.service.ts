@@ -4,40 +4,37 @@ import { Observable } from "rxjs";
 import { Paciente } from "./Paciente";
 
 @Injectable({
-    providedIn : "root"
+    providedIn: "root"
 })
-export class PacienteService{
-    
+export class PacienteService {
+
     private urlBase = "http://localhost:8080/dieta-app/pacientes";
 
 
-    constructor(private http : HttpClient){}
+    constructor(private http: HttpClient) { }
 
-    getListPaciente() : Observable<Paciente[]>{
+    getListPaciente(): Observable<Paciente[]> {
         return this.http.get<Paciente[]>(this.urlBase);
     }
 
-    getListPacienteByFirstName(primer_nombre : string) : Observable<Paciente[]>{
-        
+    getListPacienteByFirstName(primer_nombre: string): Observable<Paciente[]> {
+
         return this.http.get<Paciente[]>(`${this.urlBase}/${primer_nombre}`);
     }
 
-    agregarPaciente(paciente : Paciente) : Observable<Object>{
-        return this.http.post(this.urlBase,paciente);
+    agregarPaciente(paciente: Paciente): Observable<Object> {
+        return this.http.post(this.urlBase, paciente);
     }
 
-    getPacienteById(id : number){
-        return this.http.get<Paciente>(`${this.urlBase}/${id}`);
+    getPacienteById(id: number)  {
+        return this.http.get<Paciente>(`${this.urlBase}/${'editar'}/${id}`);
     }
 
-    editPaciente(idPaciente: number, 
-        paciente : Paciente
-        ) : Observable<Object>
-        {
-            return this.http.put(`${this.urlBase}/${idPaciente}`, paciente);
-        }
+    editPaciente(id: number, paciente: Paciente): Observable<Object> {
+        return this.http.put(`${this.urlBase}/${id}`, paciente);
+    }
 
-    deletePaciente( idPaciente : number ) : Observable< Object >{
+    deletePaciente(idPaciente: number): Observable<Object> {
         return this.http.delete(`${this.urlBase}/${idPaciente}`);
     }
 

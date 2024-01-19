@@ -54,19 +54,14 @@ export class RegistrarPacienteComponent {
   generos : string [];
   generoSeleccion : string;
   paciente : Paciente;
-  pacienteForm : FormGroup;
+  
 
   constructor(private pacienteServicio : PacienteService, private enrutador : Router,
-    private fb : FormBuilder){}
+  ){}
   
   ngOnInit(){
     this.generos = ['Femenino', 'Masculino', 'Otro'];
-    this.pacienteForm = this.fb.group({
-      primerNombre: ['', Validators.required],
-      primerApellido : ['', Validators.required],
-      genero : ['', Validators.required],
-      fechaNacimiento : ['', Validators.required],
-    })
+    
   }
   onSubmitPaciente(){
     this.addPaciente();

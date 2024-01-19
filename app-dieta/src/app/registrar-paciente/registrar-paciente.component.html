@@ -93,6 +93,9 @@
                 </p-inputGroup>
 
                 <p-inputGroup aria-required="true">
+                    <p-inputGroupAddon>
+                        <i class="pi pi-hashtag"></i>
+                    </p-inputGroupAddon>
                     <div class="card flex justify-content-center">
                         <p-dropdown [options]="generos" [(ngModel)]="genero" [style]="{'width':'15rem'}"
                             aria-required="true" placeholder="**Genero"></p-dropdown>
@@ -101,7 +104,7 @@
 
                 <p-inputGroup>
                     <p-inputGroupAddon>
-                        <i class="pi pi-user"></i>
+                        <i class="pi pi-at"></i>
                     </p-inputGroupAddon>
 
                     <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="correo"

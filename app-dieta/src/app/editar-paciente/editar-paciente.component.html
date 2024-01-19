@@ -1,1 +1,172 @@
-<p>editar-paciente works!</p>
+<div class="card">
+    <p-panel>
+
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center gap-2">
+                <span class="font-bold">Editar paciente</span>
+            </div>
+        </ng-template>
+        <!--DATOS DE CONTACTO-->
+        <p-panel [toggleable]="true">
+            <p-header>
+                <h4>Datos de contacto</h4>
+            </p-header>
+            <!--NOMBRES Y APELLIDOS-->
+
+
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-user"></i>
+                </p-inputGroupAddon>
+                <p-inputGroup>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.primerNombre"
+                        placeholder="**Primer Nombre" />
+                </p-inputGroup>
+
+                <p-inputGroup>
+
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.segundoNombre"
+                        placeholder="Segundo Nombre" />
+                </p-inputGroup>
+
+
+            </p-inputGroup>
+            <br>
+            <p-inputGroup>
+
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.primerApellido"
+                        placeholder="**Primer Apellido" />
+                </p-inputGroup>
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.segundoApellido"
+                        placeholder="Segundo Apellido" />
+
+                </p-inputGroup>
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!paciente.primerNombre">
+
+                    </span>
+                </p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!paciente.segundoNombre">
+
+                    </span>
+                </p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!paciente.primerApellido">
+
+                    </span>
+                </p-inputGroup>
+                <p-inputGroup>
+                    <span *ngIf="!paciente.segundoApellido">
+
+                    </span>
+                </p-inputGroup>
+            </p-inputGroup>
+
+
+
+
+            <br>
+
+            <!--Fecha de nacimiento-->
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-calendar"></i>
+                </p-inputGroupAddon>
+                <p-inputGroup>
+                    <p-calendar [(ngModel)]="paciente.fechaNacimiento" [touchUI]="true" [readonlyInput]="true"
+                        placeholder="**Fecha nacimiento" aria-required="true"></p-calendar>
+                </p-inputGroup>
+                
+                <p-inputGroup aria-required="true">
+                    <p-inputGroupAddon>
+                        <i class="pi pi-hashtag"></i>
+                    </p-inputGroupAddon>
+                    <div class="card flex justify-content-center">
+                        <p-dropdown [options]="generos" [(ngModel)]="paciente.genero" [style]="{'width':'15rem'}"
+                            aria-required="true" placeholder="**Genero"></p-dropdown>
+                    </div>
+                </p-inputGroup>
+
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-at"></i>
+                    </p-inputGroupAddon>
+
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.correo"
+                        placeholder="**Correo electronico" />
+                </p-inputGroup>
+            </p-inputGroup>
+            <br>
+
+
+            <p-footer>
+                <div *ngIf="paciente.primerNombre && paciente.correo && paciente.fechaNacimiento && paciente.genero">
+                    <p-button type="submit" (onClick)="onSubmit()" class="mx-2" label="Guardar paciente"
+                        icon="pi pi-plus"></p-button>
+                </div>
+                <p>**Campos obligatorios</p>
+                <div>
+                    <span *ngIf="primerNombre">Hace falta el campo obligatorio primer nombre</span>
+                </div>
+                <div>
+                    <span *ngIf="primerApellido">Hace falta el campo obligatorio primer apellido,</span>
+                </div>
+                <div>
+                    <span *ngIf="!fechaNacimiento">Hace falta el campo obligatorio fecha nacimiento,</span>
+                </div>
+                <div>
+                    <span *ngIf="correo">Hace falta el campo obligatorio correo</span>
+                </div>
+                <div>
+                    <span *ngIf="genero">Hace falta el campo obligatorio genero</span>
+                </div>
+
+            </p-footer>
+
+
+
+        </p-panel>
+        <br>
+
+        <!--HISTORIA MEDICA-->
+        <p-panel [toggleable]="true">
+            <p-header>
+                <h4>Historia del paciente</h4>
+            </p-header>
+            your content
+
+            <p-footer>
+                <div>
+                    <p-button class="mx-2" label="Guardar historia" icon="pi pi-plus"></p-button>
+                </div>
+
+            </p-footer>
+        </p-panel>
+
+
+        <ng-template pTemplate="footer">
+
+            <div>
+                <p-button (onClick)="irListaPacientes()" class="mx-2" label="Regresar" icon="pi pi-arrow-left"
+                    severity="danger"></p-button>
+            </div>
+        </ng-template>
+
+
+    </p-panel>
+</div>

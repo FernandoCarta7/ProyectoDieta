@@ -60,8 +60,8 @@ export class ListaPacientesComponent {
   goToRegistrarPaciente() {
     this.enrutador.navigate(['registrar-paciente']);
   }
-  goToeditarPaciente(){
-    this.enrutador.navigate(['editar-paciente']);
+  goToeditarPaciente(id : number){
+    this.enrutador.navigate(['editar-paciente',id]);
   }
   
 

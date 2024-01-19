@@ -23,9 +23,9 @@ public class PacienteServicio implements  IPacienteServicio{
 
   @Override
   public Paciente buscarPorId(Integer id) {
-    Paciente paciente = pacienteRepositorio.findById(id).orElse(null);
 
-    return paciente;
+
+    return pacienteRepositorio.findById(id).orElse(null);
   }
 
   @Override

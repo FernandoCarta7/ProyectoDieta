@@ -37,7 +37,7 @@
                 <td>{{ paciente.primerApellido + " " + paciente.segundoApellido}}</td>
                 <td>{{ paciente.genero }}</td>
                 <td>{{ paciente.correo }}</td>
-                <td><p-button icon="pi pi-user-edit" [rounded]="true" [text]="true" [raised]="true" severity="success" (onClick)="goToeditarPaciente()"></p-button></td>
+                <td><p-button icon="pi pi-user-edit" [rounded]="true" [text]="true" [raised]="true" severity="success" (onClick)="goToeditarPaciente(paciente.idPaciente)"></p-button></td>
                 <td><p-button icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger "></p-button></td>
             </tr>
         </ng-template>
