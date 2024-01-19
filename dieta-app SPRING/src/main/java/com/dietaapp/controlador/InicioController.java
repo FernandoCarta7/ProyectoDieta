@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 //http://locahost:8080/dieta-app
@@ -19,6 +21,18 @@ public class InicioController {
             LoggerFactory.getLogger(InicioController.class);
     @Autowired
     private PacienteServicio pacienteServicio;
+
+    @DeleteMapping("/pacientes/{id}")
+    public ResponseEntity<Map<String, Boolean>>
+    eliminarProducto(@PathVariable int id){
+        Paciente paciente = pacienteServicio.buscarPorId(id);
+        if (paciente == null) logger.error("No se encontró el paciente con el id: " + id);
+
+        this.pacienteServicio.eliminar(paciente.getIdPaciente());
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("Paciente borrado", Boolean.TRUE);
+        return ResponseEntity.ok(respuesta);
+    }
     @GetMapping("/pacientes")
     public List<Paciente> getPaciente(){
         List<Paciente> listaPacientes = this.pacienteServicio.listar();

@@ -1,19 +1,19 @@
 <div class="card">
-    <p-table #dt1 [value]="pacientes" dataKey="idPaciente" [paginator]="true" [rows]="25"
-        [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+    <p-table #dt1 [value]="pacientes" dataKey="idPaciente" [paginator]="true" [rows]="25" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [rowsPerPageOptions]="[5, 10, 20]" [globalFilterFields]="['paciente.genero']">
         <ng-template pTemplate="caption">
             <div class="flex">
 
 
-                
-                    
-                    <span class="p-input-icon-left ml-auto">
-                        <i class="pi pi-search"></i>
-                        
-                        <input pInputText type="text" [(ngModel)]="value" placeholder="Filtrar por nombres" />
-                    </span>
+
+
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+
+                    <input pInputText type="text" [(ngModel)]="value" placeholder="Filtrar por nombres" />
+                </span>
                 <p-button (onClick)="filterByName()">
                     Filtrar pacientes
                 </p-button>
@@ -22,7 +22,7 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                
+
                 <th style="width:20%">Nombre</th>
                 <th style="width:20%">Apellido</th>
                 <th style="width:10%">Genero</th>
@@ -37,14 +37,33 @@
                 <td>{{ paciente.primerApellido + " " + paciente.segundoApellido}}</td>
                 <td>{{ paciente.genero }}</td>
                 <td>{{ paciente.correo }}</td>
-                <td><p-button icon="pi pi-user-edit" [rounded]="true" [text]="true" [raised]="true" severity="success" (onClick)="goToeditarPaciente(paciente.idPaciente)"></p-button></td>
-                <td><p-button icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger "></p-button></td>
+                <td><p-button icon="pi pi-user-edit" [rounded]="true" [text]="true" [raised]="true" severity="success"
+                        (onClick)="goToeditarPaciente(paciente.idPaciente)"></p-button></td>
+                <td>
+                    <div class="card flex justify-content-center gap-2">
+                        <p-toast></p-toast>
+                        <p-confirmPopup>
+                            <ng-template pTemplate="content" let-message>
+                                <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3">
+                                    
+                                    <p>{{ "¿Desea borrar el paciente?"}}</p>
+                                </div>
+                            </ng-template>
+                        </p-confirmPopup>
+                        
+                        <p-button (click)="confirm2($event, paciente.idPaciente)" icon="pi pi-times" [rounded]="true" [text]="true" severity="danger ">
+
+                        </p-button>
+                    </div>
+
+                    
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">
-            
+
             <a href="registrar-paciente" class="p-button font-bold"> <i class="pi pi-plus"></i>Agregar paciente</a>
         </ng-template>
-       
+
     </p-table>
 </div>
