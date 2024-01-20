@@ -9,12 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { LayoutNavComponent } from '../layout/layout-nav/layout-nav.component';
 
 
 @Component({
   selector: 'lista-pacientes',
   standalone: true,
-  imports: [TableModule, ButtonModule, InputTextModule, FormsModule, ConfirmPopupModule, ConfirmPopupModule, ToastModule],
+  imports: [TableModule, ButtonModule, InputTextModule, 
+    FormsModule, ConfirmPopupModule, ConfirmPopupModule, 
+    ToastModule, LayoutNavComponent],
   providers: [ConfirmationService, MessageService],
   templateUrl: './lista-pacientes.component.html',
   styleUrl: './lista-pacientes.component.css'
@@ -34,6 +37,7 @@ export class ListaPacientesComponent {
     private messageService: MessageService) { };
 
   nombre: string;
+
   ngOnInit() {
     //Cargamos los productos
     this.getPacientes();
@@ -77,10 +81,10 @@ export class ListaPacientesComponent {
       accept: () => {
 
         this.pacienteServicio.deletePaciente(idPaciente).subscribe({ next: (datos) => this.getPacientes(), error: (errores) => console.error(errores) })
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Confirmación: Paciente borrado', life: 3000 });
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Confirmación: Paciente borrado', life: 4000 });
       },
       reject: () => {
-        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Cancelado, paciente NO borrado', life: 3000 });
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Cancelado, paciente NO borrado', life: 4000 });
       }
     });
   }

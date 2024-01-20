@@ -110,6 +110,14 @@
                     <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="correo"
                         placeholder="**Correo electronico" />
                 </p-inputGroup>
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="numeroCelular"
+                        placeholder="Número celular" />
+
+                </p-inputGroup>
             </p-inputGroup>
             <br>
 
@@ -144,7 +152,7 @@
         <br>
 
         <!--HISTORIA MEDICA-->
-        <p-panel [toggleable]="true">
+        <p-panel [toggleable]="true" collapsed]="true">
             <p-header>
                 <h4>Historia del paciente</h4>
             </p-header>

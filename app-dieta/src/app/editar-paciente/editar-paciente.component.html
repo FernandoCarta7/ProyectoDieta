@@ -1,3 +1,5 @@
+<layout-nav></layout-nav>
+<br>
 <div class="card">
     <p-panel>
 
@@ -83,15 +85,32 @@
             <br>
 
             <!--Fecha de nacimiento-->
+
+
+
+
+
             <p-inputGroup>
-                <p-inputGroupAddon>
-                    <i class="pi pi-calendar"></i>
-                </p-inputGroupAddon>
                 <p-inputGroup>
-                    <p-calendar [(ngModel)]="paciente.fechaNacimiento" [touchUI]="true" [readonlyInput]="true"
-                        placeholder="**Fecha nacimiento" aria-required="true"></p-calendar>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-at"></i>
+                    </p-inputGroupAddon>
+
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.correo"
+                        placeholder="**Correo electronico" />
                 </p-inputGroup>
-                
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-calendar"></i>
+                    </p-inputGroupAddon>
+                    <p-inputGroup>
+                        <p-calendar [(ngModel)]="paciente.fechaNacimiento" [touchUI]="true" [readonlyInput]="true"
+                            placeholder="**Fecha nacimiento" aria-required="true"></p-calendar>
+                    </p-inputGroup>
+
+
+                </p-inputGroup>
+
                 <p-inputGroup aria-required="true">
                     <p-inputGroupAddon>
                         <i class="pi pi-hashtag"></i>
@@ -102,13 +121,14 @@
                     </div>
                 </p-inputGroup>
 
+
                 <p-inputGroup>
                     <p-inputGroupAddon>
-                        <i class="pi pi-at"></i>
+                        <i class="pi pi-user"></i>
                     </p-inputGroupAddon>
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="numeroCelular"
+                        placeholder="Número celular" />
 
-                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.correo"
-                        placeholder="**Correo electronico" />
                 </p-inputGroup>
             </p-inputGroup>
             <br>

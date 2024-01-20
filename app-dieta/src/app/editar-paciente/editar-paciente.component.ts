@@ -13,6 +13,7 @@ import { PanelModule } from 'primeng/panel';
 import { Paciente } from '../clases/Paciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteService } from '../clases/Paciente.service';
+import { LayoutNavComponent } from '../layout/layout-nav/layout-nav.component';
 
 @Component({
   selector: 'app-editar-paciente',
@@ -30,7 +31,8 @@ import { PacienteService } from '../clases/Paciente.service';
     InputTextModule,
     ListboxModule,
     FormsModule,
-    NgIf
+    NgIf,
+    LayoutNavComponent
   ],
   templateUrl: './editar-paciente.component.html',
   styleUrl: './editar-paciente.component.css'

@@ -17,6 +17,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { PacienteService } from '../clases/Paciente.service';
 import { Router } from '@angular/router';
 import { Paciente } from '../clases/Paciente';
+import { LayoutNavComponent } from '../layout/layout-nav/layout-nav.component';
 
 @Component({
   selector: 'app-registrar-paciente',
@@ -33,7 +34,8 @@ import { Paciente } from '../clases/Paciente';
     InputTextModule,
     ListboxModule,
     FormsModule,
-    NgIf
+    NgIf,
+    LayoutNavComponent
     
     ],
   providers : [Validators],

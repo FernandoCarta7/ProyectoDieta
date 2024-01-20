@@ -1,3 +1,5 @@
+<layout-nav></layout-nav>
+<br>
 <div class="card">
     <p-table #dt1 [value]="pacientes" dataKey="idPaciente" [paginator]="true" [rows]="25" [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
@@ -51,7 +53,7 @@
                             </ng-template>
                         </p-confirmPopup>
                         
-                        <p-button (click)="confirm2($event, paciente.idPaciente)" icon="pi pi-times" [rounded]="true" [text]="true" severity="danger ">
+                        <p-button (click)="confirm2($event, paciente.idPaciente)" icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger ">
 
                         </p-button>
                     </div>
