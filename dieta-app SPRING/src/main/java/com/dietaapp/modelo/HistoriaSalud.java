@@ -21,7 +21,8 @@ public class HistoriaSalud {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   int idHistoriaSalud;
   int idPaciente;
-  ArrayList<String> enfermedades;
+  String enfermedades;
   double imc;
+  double peso;
   int estatura;
 }

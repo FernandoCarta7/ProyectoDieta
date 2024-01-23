@@ -1,9 +1,11 @@
+<layout-nav></layout-nav>
+<br>
 <div class="card">
     <p-panel>
 
         <ng-template pTemplate="header">
             <div class="flex align-items-center gap-2">
-                <span class="font-bold">Registrar paciente</span>
+                <h3 class="font-bold">Registrar paciente</h3>
             </div>
         </ng-template>
         <!--DATOS DE CONTACTO-->
@@ -112,7 +114,7 @@
                 </p-inputGroup>
                 <p-inputGroup>
                     <p-inputGroupAddon>
-                        <i class="pi pi-user"></i>
+                        <i class="pi pi-phone"></i>
                     </p-inputGroupAddon>
                     <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="numeroCelular"
                         placeholder="Número celular" />
@@ -151,28 +153,14 @@
         </p-panel>
         <br>
 
-        <!--HISTORIA MEDICA-->
-        <p-panel [toggleable]="true" collapsed]="true">
-            <p-header>
-                <h4>Historia del paciente</h4>
-            </p-header>
-            your content
-
-            <p-footer>
-                <div>
-                    <p-button class="mx-2" label="Guardar historia" icon="pi pi-plus"></p-button>
-                </div>
-
-            </p-footer>
-        </p-panel>
-
-
         <ng-template pTemplate="footer">
 
             <div>
                 <p-button (onClick)="irListaPacientes()" class="mx-2" label="Regresar" icon="pi pi-arrow-left"
                     severity="danger"></p-button>
             </div>
+            <br>
+            
         </ng-template>
 
 

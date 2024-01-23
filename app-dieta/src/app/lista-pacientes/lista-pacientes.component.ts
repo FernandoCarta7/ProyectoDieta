@@ -12,11 +12,12 @@ import { ToastModule } from 'primeng/toast';
 import { LayoutNavComponent } from '../layout/layout-nav/layout-nav.component';
 
 
+
 @Component({
   selector: 'lista-pacientes',
   standalone: true,
-  imports: [TableModule, ButtonModule, InputTextModule, 
-    FormsModule, ConfirmPopupModule, ConfirmPopupModule, 
+  imports: [TableModule, ButtonModule, InputTextModule,
+    FormsModule, ConfirmPopupModule, ConfirmPopupModule,
     ToastModule, LayoutNavComponent],
   providers: [ConfirmationService, MessageService],
   templateUrl: './lista-pacientes.component.html',

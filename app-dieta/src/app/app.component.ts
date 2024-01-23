@@ -10,12 +10,13 @@ import { trigger,state,style,  } from '@angular/animations';
 import bootstrap from '../main.server';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { HistoriaSaludService } from './clases/HistoriaSaludServicio.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, ListaPacientesComponent],
-  providers : [PacienteService,],
+  providers : [PacienteService, HistoriaSaludService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -5,7 +5,7 @@
 
         <ng-template pTemplate="header">
             <div class="flex align-items-center gap-2">
-                <span class="font-bold">Editar paciente</span>
+                <h3 class="font-bold">Editar paciente</h3>
             </div>
         </ng-template>
         <!--DATOS DE CONTACTO-->
@@ -14,8 +14,6 @@
                 <h4>Datos de contacto</h4>
             </p-header>
             <!--NOMBRES Y APELLIDOS-->
-
-
             <p-inputGroup>
                 <p-inputGroupAddon>
                     <i class="pi pi-user"></i>
@@ -26,7 +24,6 @@
                 </p-inputGroup>
 
                 <p-inputGroup>
-
                     <p-inputGroupAddon>
                         <i class="pi pi-user"></i>
                     </p-inputGroupAddon>
@@ -39,7 +36,6 @@
             </p-inputGroup>
             <br>
             <p-inputGroup>
-
                 <p-inputGroup>
                     <p-inputGroupAddon>
                         <i class="pi pi-user"></i>
@@ -56,6 +52,7 @@
 
                 </p-inputGroup>
             </p-inputGroup>
+            <!--VALIDACIONES-->
             <p-inputGroup>
                 <p-inputGroup>
                     <span *ngIf="!paciente.primerNombre">
@@ -78,18 +75,9 @@
                     </span>
                 </p-inputGroup>
             </p-inputGroup>
-
-
-
-
             <br>
 
             <!--Fecha de nacimiento-->
-
-
-
-
-
             <p-inputGroup>
                 <p-inputGroup>
                     <p-inputGroupAddon>
@@ -124,9 +112,9 @@
 
                 <p-inputGroup>
                     <p-inputGroupAddon>
-                        <i class="pi pi-user"></i>
+                        <i class="pi pi-phone"></i>
                     </p-inputGroupAddon>
-                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="numeroCelular"
+                    <input pInputText class="p-inputtext-sm" type="text" [(ngModel)]="paciente.numeroCelular"
                         placeholder="Número celular" />
 
                 </p-inputGroup>
@@ -147,9 +135,6 @@
                     <span *ngIf="primerApellido">Hace falta el campo obligatorio primer apellido,</span>
                 </div>
                 <div>
-                    <span *ngIf="!fechaNacimiento">Hace falta el campo obligatorio fecha nacimiento,</span>
-                </div>
-                <div>
                     <span *ngIf="correo">Hace falta el campo obligatorio correo</span>
                 </div>
                 <div>
@@ -164,15 +149,45 @@
         <br>
 
         <!--HISTORIA MEDICA-->
-        <p-panel [toggleable]="true">
+        <p-panel [toggleable]="true" [collapsed]="true">
             <p-header>
                 <h4>Historia del paciente</h4>
             </p-header>
-            your content
+            <div class="card flex flex-column md:flex-row gap-3">
+                <br>
+                <p-inputGroup>
+                    <p-inputGroupAddon><i class="pi pi-sort-alt"></i></p-inputGroupAddon>
+                    <input type="text" [(ngModel)]="estatura" pInputText placeholder="Estatura" />
+                    <p-inputGroupAddon>cm</p-inputGroupAddon>
+                </p-inputGroup>
+                <br>
+                <p-inputGroup>
+                    <p-inputGroupAddon><i class="pi pi-th-large"></i></p-inputGroupAddon>
+                    <input type="text" [(ngModel)]="peso" pInputText placeholder="Peso" />
+                    <p-inputGroupAddon>kg</p-inputGroupAddon>
+                </p-inputGroup>
+                <br>
+                <div class="card flex justify-content-center">
+                    <textarea [(ngModel)]="enfermedades" rows="10" cols="50" pInputTextarea [autoResize]="true"
+                        placeholder="Enfermedades"></textarea>
+                </div>
+
+
+            </div>
 
             <p-footer>
                 <div>
-                    <p-button class="mx-2" label="Guardar historia" icon="pi pi-plus"></p-button>
+                    <p-button type="submit" (onClick)="addHistoria()" *ngIf="estatura && peso && enfermedades "
+                        class="mx-2" label="Guardar historia" icon="pi pi-plus"></p-button>
+                </div>
+                <div>
+                    <span *ngIf="!estatura">Hace falta el campo obligatorio estatura,</span>
+                </div>
+                <div>
+                    <span *ngIf="!peso">Hace falta el campo obligatorio peso</span>
+                </div>
+                <div>
+                    <span *ngIf="!enfermedades">Hace falta el campo obligatorio enfermedades</span>
                 </div>
 
             </p-footer>
@@ -185,6 +200,7 @@
                 <p-button (onClick)="irListaPacientes()" class="mx-2" label="Regresar" icon="pi pi-arrow-left"
                     severity="danger"></p-button>
             </div>
+            <br>
         </ng-template>
 
 

@@ -6,7 +6,7 @@ export class Paciente {
     segundoApellido: string;
     correo: string;
     numeroCelular: string;
-    genero: string; //Masculino, FemeninoString 
+    genero: string; //Masculino, Femenino
     fechaNacimiento: Date;
     constructor( primerNombre : string, primerApellido : string, 
         segundoNombre: string, segundoApellido : 

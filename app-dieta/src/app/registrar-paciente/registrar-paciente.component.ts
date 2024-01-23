@@ -20,7 +20,7 @@ import { Paciente } from '../clases/Paciente';
 import { LayoutNavComponent } from '../layout/layout-nav/layout-nav.component';
 
 @Component({
-  selector: 'app-registrar-paciente',
+  selector: 'registrar-paciente',
   standalone: true,
   imports: [DropdownModule,
     InputGroupAddonModule, 
@@ -81,7 +81,6 @@ export class RegistrarPacienteComponent {
       this.numeroCelular,
       this.fechaNacimiento);
 
-      this.validarNull(this.paciente);
       this.pacienteServicio.agregarPaciente(this.paciente).subscribe(
       {
         next : (datos) => {
@@ -96,9 +95,9 @@ export class RegistrarPacienteComponent {
   irListaPacientes(){
     this.enrutador.navigate(['/lista-pacientes']);
   }
-  validarNull(paciente : Paciente) : number{
-    
-    return -1;
+  goToRegistroPaciente(id : number){
+    this.enrutador.navigate(['editar-paciente', id]);
   }
+ 
   
 }

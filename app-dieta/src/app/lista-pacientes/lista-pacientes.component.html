@@ -28,7 +28,8 @@
                 <th style="width:20%">Nombre</th>
                 <th style="width:20%">Apellido</th>
                 <th style="width:10%">Genero</th>
-                <th style="width:40%">Correo</th>
+                <th style="width:10%">Celular</th>
+                <th style="width:30%">Correo</th>
                 <th style="width:5%"></th>
                 <th style="width:5%"></th>
             </tr>
@@ -38,6 +39,7 @@
                 <td>{{ paciente.primerNombre + " " + paciente.segundoNombre}}</td>
                 <td>{{ paciente.primerApellido + " " + paciente.segundoApellido}}</td>
                 <td>{{ paciente.genero }}</td>
+                <td>{{ paciente.numeroCelular }}</td>
                 <td>{{ paciente.correo }}</td>
                 <td><p-button icon="pi pi-user-edit" [rounded]="true" [text]="true" [raised]="true" severity="success"
                         (onClick)="goToeditarPaciente(paciente.idPaciente)"></p-button></td>
@@ -46,25 +48,30 @@
                         <p-toast></p-toast>
                         <p-confirmPopup>
                             <ng-template pTemplate="content" let-message>
-                                <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3">
-                                    
+                                <div
+                                    class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3">
+
                                     <p>{{ "¿Desea borrar el paciente?"}}</p>
                                 </div>
                             </ng-template>
                         </p-confirmPopup>
-                        
-                        <p-button (click)="confirm2($event, paciente.idPaciente)" icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger ">
+
+                        <p-button (click)="confirm2($event, paciente.idPaciente)" icon="pi pi-times" [rounded]="true"
+                            [text]="true" [raised]="true" severity="danger ">
 
                         </p-button>
                     </div>
 
-                    
+
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">
-
-            <a href="registrar-paciente" class="p-button font-bold"> <i class="pi pi-plus"></i>Agregar paciente</a>
+            <div>
+                <a href="registrar-paciente" class="p-button font-bold"> <i class="pi pi-plus"></i>Agregar paciente</a>
+            </div>
+            <br>
+            <p-button icon="pi pi-file-pdf" severity="danger " label="Descargar pacientes"></p-button>
         </ng-template>
 
     </p-table>
