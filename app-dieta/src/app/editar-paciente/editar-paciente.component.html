@@ -153,7 +153,28 @@
             <p-header>
                 <h4>Historia del paciente</h4>
             </p-header>
-            <div class="card flex flex-column md:flex-row gap-3">
+            <div *ngIf="historia" class="card flex flex-column md:flex-row gap-3">
+                <br>
+                <p-inputGroup>
+                    <p-inputGroupAddon><i class="pi pi-sort-alt"></i></p-inputGroupAddon>
+                    <input type="text" [(ngModel)]="historia.estatura" pInputText placeholder="Estatura" />
+                    <p-inputGroupAddon>cm</p-inputGroupAddon>
+                </p-inputGroup>
+                <br>
+                <p-inputGroup >
+                    <p-inputGroupAddon><i class="pi pi-th-large"></i></p-inputGroupAddon>
+                    <input type="text" [(ngModel)]="historia.peso" pInputText placeholder="Peso" />
+                    <p-inputGroupAddon>kg</p-inputGroupAddon>
+                </p-inputGroup>
+                <br>
+                <div class="card flex justify-content-center">
+                    <textarea [(ngModel)]="historia.enfermedades" rows="10" cols="50" pInputTextarea [autoResize]="true"
+                        placeholder="Enfermedades"></textarea>
+                </div>
+
+
+            </div>
+            <div *ngIf="!historia" class="card flex flex-column md:flex-row gap-3">
                 <br>
                 <p-inputGroup>
                     <p-inputGroupAddon><i class="pi pi-sort-alt"></i></p-inputGroupAddon>
@@ -161,7 +182,7 @@
                     <p-inputGroupAddon>cm</p-inputGroupAddon>
                 </p-inputGroup>
                 <br>
-                <p-inputGroup>
+                <p-inputGroup >
                     <p-inputGroupAddon><i class="pi pi-th-large"></i></p-inputGroupAddon>
                     <input type="text" [(ngModel)]="peso" pInputText placeholder="Peso" />
                     <p-inputGroupAddon>kg</p-inputGroupAddon>
@@ -177,19 +198,27 @@
 
             <p-footer>
                 <div>
-                    <p-button type="submit" (onClick)="addHistoria()" *ngIf="estatura && peso && enfermedades "
+                    <p-button type="submit" (onClick)="addHistoria()" *ngIf="(estatura && peso && enfermedades) && !historia"
                         class="mx-2" label="Guardar historia" icon="pi pi-plus"></p-button>
                 </div>
+                <!--Si existe una historia, es porque está asociada con un paciente, entonces en vez de guardar una historia nueva con el mismo idPaciente
+                se debe de actualizar la historia -->
                 <div>
-                    <span *ngIf="!estatura">Hace falta el campo obligatorio estatura,</span>
+                    <p-button type="submit" (onClick)="editarHistoria()" *ngIf="historia"
+                        class="mx-2" label="Actualizar historia" icon="pi pi-plus"></p-button>
                 </div>
-                <div>
-                    <span *ngIf="!peso">Hace falta el campo obligatorio peso</span>
+                <div *ngIf="historia">
+                    <div>
+                        <span *ngIf="!estatura">Hace falta el campo obligatorio estatura,</span>
+                    </div>
+                    <div>
+                        <span *ngIf="!peso">Hace falta el campo obligatorio peso</span>
+                    </div>
+                    <div>
+                        <span *ngIf="!enfermedades">Hace falta el campo obligatorio enfermedades</span>
+                    </div>
                 </div>
-                <div>
-                    <span *ngIf="!enfermedades">Hace falta el campo obligatorio enfermedades</span>
-                </div>
-
+                
             </p-footer>
         </p-panel>
 

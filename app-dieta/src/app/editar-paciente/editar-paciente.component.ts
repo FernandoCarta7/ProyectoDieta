@@ -55,6 +55,7 @@ export class EditarPacienteComponent {
   generoSeleccion: string;
   paciente: Paciente;
   historia: HistoriaSalud;
+
   enfermedades: string;
   imc: number;
   estatura: number;
@@ -79,9 +80,22 @@ export class EditarPacienteComponent {
         error: (errores: any) => console.log(errores)
       }
     )
-    this.enfermedades = this.historia.enfermedades;
-    this.estatura = this.historia.estatura;
-    this.peso = this.historia.peso;
+    this.historiaServicio.getHistoriaSaludByIdPaciente(this.id).subscribe(
+      {
+        next: (datos) => this.historia = datos,
+        error: (errores: any) => console.log(errores)
+      }
+    );
+    if (this.historia !== null && this.historia !== undefined) {
+
+      this.enfermedades = this.historia.enfermedades;
+      this.estatura = this.historia.estatura;
+      this.peso = this.historia.peso;
+    } else {
+      this.enfermedades = "Ingrese aquí condiciones médicas del paciente";
+      this.estatura = 1;
+      this.peso = 1;
+    }
   }
 
   onSubmit() {
@@ -106,14 +120,24 @@ export class EditarPacienteComponent {
 
   addHistoria() {
     this.imc = this.peso / (this.estatura * this.estatura / 10000);
-    
+
     this.historia = new HistoriaSalud(this.id, this.enfermedades, this.imc, this.estatura, this.peso);
-    
+
     this.historiaServicio.agregarHistoriaSalud(this.historia).subscribe({
       next: (datos) => {
         console.log('Historia guardada')
         this.irListaPacientes();
       }, error: (error: any) => { console.log(error) }
     })
+  }
+
+  editarHistoria() {
+
+    this.historiaServicio.editHistoriaSalud(this.id, this.historia).subscribe(
+      {
+        next: (datos) => this.irListaPacientes(),
+        error: (errores) => console.log(errores)
+      }
+    )
   }
 }

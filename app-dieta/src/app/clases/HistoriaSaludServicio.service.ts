@@ -16,9 +16,9 @@ export class HistoriaSaludService {
         return this.http.get<HistoriaSalud[]>(this.urlBase);
     }
 
-    getListHistoriaSaludByIdPaciente(id_paciente: number): Observable<HistoriaSalud[]> {
+    getHistoriaSaludByIdPaciente(id_paciente: number): Observable<HistoriaSalud> {
 
-        return this.http.get<HistoriaSalud[]>(`${this.urlBase}/${id_paciente}`);
+        return this.http.get<HistoriaSalud>(`${this.urlAgregarHistoria}/${id_paciente}`);
     }
 
     agregarHistoriaSalud(historiaSalud: HistoriaSalud): Observable<Object> {
@@ -29,8 +29,10 @@ export class HistoriaSaludService {
         return this.http.get<HistoriaSalud>(`${this.urlBase}/${'editar'}/${id}`);
     }
 
-    editHistoriaSalud(id: number, historiaSalud: HistoriaSalud): Observable<Object> {
-        return this.http.put(`${this.urlBase}/${id}`, historiaSalud);
+    editHistoriaSalud(id : number, historiaSalud: HistoriaSalud): Observable<Object> {
+      
+
+        return this.http.put(`${this.urlAgregarHistoria}/${id}`, historiaSalud);
     }
 
     deleteHistoriaSalud(idHistoriaSalud: number): Observable<Object> {

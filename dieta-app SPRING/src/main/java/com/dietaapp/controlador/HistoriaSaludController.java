@@ -5,6 +5,7 @@ import com.dietaapp.servicio.HistoriaServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,5 +40,24 @@ public class HistoriaSaludController {
         return this.historiaServicio.guardar(historia);
     }
 
-    //PutMapping("/historia/{id}")
+    @PutMapping("/historia-paciente/{id}")
+    public ResponseEntity<HistoriaSalud> actualizarHistoria(
+            @RequestBody HistoriaSalud historiaSaludRecibida){
+
+        HistoriaSalud historiaSalud = this.historiaServicio.buscarPorId(historiaSaludRecibida.getIdHistoriaSalud());
+
+        if (historiaSalud == null){
+            throw new RuntimeException("Historia salud con id : " + historiaSaludRecibida.getIdHistoriaSalud() + ", no existe");
+        }
+
+        historiaSalud.setEnfermedades(historiaSaludRecibida.getEnfermedades());
+        historiaSalud.setPeso(historiaSaludRecibida.getPeso());
+        historiaSalud.setImc(historiaSaludRecibida.getImc());
+        historiaSalud.setEstatura(historiaSaludRecibida.getEstatura());
+        historiaSalud.setIdPaciente(historiaSaludRecibida.getIdPaciente());
+
+        this.historiaServicio.guardar(historiaSalud);
+
+        return ResponseEntity.ok(historiaSaludRecibida);
+    }
 }
