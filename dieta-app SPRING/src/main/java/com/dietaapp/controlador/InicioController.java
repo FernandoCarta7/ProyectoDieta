@@ -1,6 +1,8 @@
 package com.dietaapp.controlador;
 
+import com.dietaapp.modelo.HistoriaSalud;
 import com.dietaapp.modelo.Paciente;
+import com.dietaapp.servicio.HistoriaServicio;
 import com.dietaapp.servicio.PacienteServicio;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,22 @@ public class InicioController {
             LoggerFactory.getLogger(InicioController.class);
     @Autowired
     private PacienteServicio pacienteServicio;
+    @Autowired
+    private HistoriaServicio historiaServicio;
 
     @DeleteMapping("/pacientes/{id}")
     public ResponseEntity<Map<String, Boolean>>
     eliminarProducto(@PathVariable int id){
         Paciente paciente = pacienteServicio.buscarPorId(id);
+        HistoriaSalud historiaSalud = historiaServicio.buscarPorIdPaciente(id);
+
         if (paciente == null) logger.error("No se encontró el paciente con el id: " + id);
+        if (historiaSalud == null) {
+            logger.warn("El paciente no tenía historia registrada");
+        } else {
+            this.historiaServicio.eliminar(historiaSalud.getIdHistoriaSalud());
+        }
+
 
         this.pacienteServicio.eliminar(paciente.getIdPaciente());
         Map<String, Boolean> respuesta = new HashMap<>();
@@ -85,4 +97,5 @@ public class InicioController {
 
         return ResponseEntity.ok(paciente);
     }
+
 }

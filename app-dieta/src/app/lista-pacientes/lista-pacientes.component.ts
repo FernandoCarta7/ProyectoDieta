@@ -10,7 +10,11 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { LayoutNavComponent } from '../layout/layout-nav/layout-nav.component';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
 
+import { Turno } from '../clases/Turno';
+import { TurnoServicio } from '../clases/TurnoServicio.service';
 
 
 @Component({
@@ -18,7 +22,9 @@ import { LayoutNavComponent } from '../layout/layout-nav/layout-nav.component';
   standalone: true,
   imports: [TableModule, ButtonModule, InputTextModule,
     FormsModule, ConfirmPopupModule, ConfirmPopupModule,
-    ToastModule, LayoutNavComponent],
+    ToastModule, LayoutNavComponent, DialogModule,
+    CalendarModule
+    ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './lista-pacientes.component.html',
   styleUrl: './lista-pacientes.component.css'
@@ -29,8 +35,9 @@ export class ListaPacientesComponent {
   pacientesFiltrado: Paciente[];
   value: string;
   p: Paciente;
-
-
+  date: Date | undefined;
+  descripcionTurno : string;
+  visible: boolean = false;
 
   constructor(private pacienteServicio: PacienteService,
     private enrutador: Router,
@@ -38,6 +45,8 @@ export class ListaPacientesComponent {
     private messageService: MessageService) { };
 
   nombre: string;
+  
+  
 
   ngOnInit() {
     //Cargamos los productos
@@ -70,9 +79,15 @@ export class ListaPacientesComponent {
   goToRegistrarPaciente() {
     this.enrutador.navigate(['registrar-paciente']);
   }
+
   goToeditarPaciente(id: number) {
     this.enrutador.navigate(['editar-paciente', id]);
   }
+
+  goToAgendarCita() {
+    this.enrutador.navigate(['agendar-cita']);
+  }
+
   confirm2(event: Event, idPaciente: number) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
@@ -89,7 +104,19 @@ export class ListaPacientesComponent {
       }
     });
   }
+  
 
+  showDialog() {
+    this.visible = true;
+  }
+
+  
+  irListaPacientes() {
+    this.enrutador.navigate(['/lista-pacientes']);
+  }
+  goToAgendarPaciente(idPaciente : number){
+    this.enrutador.navigate(['agendar-cita',idPaciente])
+  }
 }
 
 

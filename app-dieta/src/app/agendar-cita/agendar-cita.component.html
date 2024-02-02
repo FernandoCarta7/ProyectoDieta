@@ -1,0 +1,17 @@
+<layout-nav></layout-nav>
+<br>
+
+<br>
+
+
+<p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true" [showTime]="true">
+</p-calendar>
+<br>
+<br>
+<textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [(ngModel)]="descripcionTurno"
+    placeholder="Descripción del turno"></textarea>
+<br>
+<div>
+
+    <p-button (click)="crearTurno()" icon="pi pi-calendar-plus" label="Asignar turno"></p-button>
+</div>

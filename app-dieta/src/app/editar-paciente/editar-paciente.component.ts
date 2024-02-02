@@ -66,9 +66,7 @@ export class EditarPacienteComponent {
     private ruta: ActivatedRoute,
     private pacienteServicio: PacienteService,
     private historiaServicio: HistoriaSaludService
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.id = this.ruta.snapshot.params['id'];

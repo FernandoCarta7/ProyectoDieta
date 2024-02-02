@@ -54,7 +54,7 @@ export class LayoutNavComponent {
       {
         label: 'Agendar cita',
         icon: 'pi pi-fw pi-calendar',
-        routerLink : 'agendar-cita'
+        routerLink : '/agendar-cita'
         /*items: [
           [
             {
