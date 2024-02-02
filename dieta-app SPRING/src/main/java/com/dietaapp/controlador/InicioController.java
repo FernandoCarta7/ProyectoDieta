@@ -2,8 +2,12 @@ package com.dietaapp.controlador;
 
 import com.dietaapp.modelo.HistoriaSalud;
 import com.dietaapp.modelo.Paciente;
+import com.dietaapp.modelo.Turno;
+import com.dietaapp.modelo.Turno_Paciente;
 import com.dietaapp.servicio.HistoriaServicio;
 import com.dietaapp.servicio.PacienteServicio;
+import com.dietaapp.servicio.TurnoServicio;
+import com.dietaapp.servicio.Turno_PacienteServicio;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +29,23 @@ public class InicioController {
     private PacienteServicio pacienteServicio;
     @Autowired
     private HistoriaServicio historiaServicio;
+    @Autowired
+    private TurnoServicio turnoServicio;
+
+    @Autowired
+    private Turno_PacienteServicio turnoPacienteServicio;
 
     @DeleteMapping("/pacientes/{id}")
     public ResponseEntity<Map<String, Boolean>>
     eliminarProducto(@PathVariable int id){
         Paciente paciente = pacienteServicio.buscarPorId(id);
         HistoriaSalud historiaSalud = historiaServicio.buscarPorIdPaciente(id);
+        Turno_Paciente turnoPaciente = turnoPacienteServicio.getTurnoPacienteByIdPaciente(id);
+        Turno turno = null;
+        if (turnoPaciente != null){
+            turno = turnoServicio.buscarPorId(turnoPaciente.getIdTurno());
+        }
+
 
         if (paciente == null) logger.error("No se encontró el paciente con el id: " + id);
         if (historiaSalud == null) {
@@ -38,6 +53,15 @@ public class InicioController {
         } else {
             this.historiaServicio.eliminar(historiaSalud.getIdHistoriaSalud());
         }
+        if (turno != null){
+            logger.info("ELIMINANDO EL TURNO DEL PACIENTE");
+            this.turnoPacienteServicio.eliminar(turnoPaciente.getId());
+            this.turnoServicio.eliminar(turno.getIdTurno());
+            logger.info("TURNO ELIMINADO");
+        } else {
+            logger.info("El paciente NO tenía turno asignado");
+        }
+
 
 
         this.pacienteServicio.eliminar(paciente.getIdPaciente());

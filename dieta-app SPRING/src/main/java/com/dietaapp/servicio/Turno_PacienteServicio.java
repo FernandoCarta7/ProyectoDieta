@@ -32,4 +32,8 @@ public class Turno_PacienteServicio implements ITurno_PacienteServicio{
     public void eliminar(Integer idPaciente) {
         this.turno_pacienteRepositorio.deleteById(idPaciente);
     }
+
+    public Turno_Paciente getTurnoPacienteByIdPaciente(int id_paciente){
+        return this.turno_pacienteRepositorio.idPaciente(id_paciente);
+    }
 }

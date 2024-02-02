@@ -1,17 +1,30 @@
 <layout-nav></layout-nav>
 <br>
 
-<br>
+<div class="card flex justify-content-center">
+    <p-fieldset legend="AGENDAR TURNO">
+        <div class="centrar">
+            <p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true" [showTime]="true">
+            </p-calendar>
+        </div>
+        <br>
+        <div class="centrar">
+            <textarea rows="10" cols="50" pInputTextarea [autoResize]="true" [(ngModel)]="descripcionTurno"
+                placeholder="Descripción del turno"></textarea>
 
+        </div>
+        <br>
+        <div>
 
-<p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true" [showTime]="true">
-</p-calendar>
-<br>
-<br>
-<textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [(ngModel)]="descripcionTurno"
-    placeholder="Descripción del turno"></textarea>
-<br>
-<div>
+            <div class="centrar">
+                <p-button (click)="crearTurno()" icon="pi pi-calendar-plus" label="Asignar turno">
+                </p-button>
+                <p-button (click)="irListaPacientes()" icon="pi pi-chevron-left" severity="warning" label="Regresar">
+                </p-button>
 
-    <p-button (click)="crearTurno()" icon="pi pi-calendar-plus" label="Asignar turno"></p-button>
+            </div>
+
+        </div>
+
+    </p-fieldset>
 </div>

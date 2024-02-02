@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TurnoServicio } from '../clases/TurnoServicio.service';
 import { Turno } from '../clases/Turno';
 import { Paciente } from '../clases/Paciente';
+import { CardModule } from 'primeng/card';
+import { SplitterModule } from 'primeng/splitter';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @Component({
   selector: 'agendar-cita',
@@ -14,7 +17,10 @@ import { Paciente } from '../clases/Paciente';
   imports: [LayoutNavComponent,
     CalendarModule,
     FormsModule,
-    InputTextareaModule
+    InputTextareaModule,
+    CardModule,
+    SplitterModule,
+    FieldsetModule
   ],
   templateUrl: './agendar-cita.component.html',
   styleUrl: './agendar-cita.component.css'
