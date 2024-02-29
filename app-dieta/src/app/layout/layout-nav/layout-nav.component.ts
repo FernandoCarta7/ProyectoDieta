@@ -13,7 +13,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 export class LayoutNavComponent {
   items: MegaMenuItem[] | undefined;
 
-  
+
 
   ngOnInit() {
     this.items = [
@@ -24,20 +24,20 @@ export class LayoutNavComponent {
           [
             {
               label: 'Lista de pacientes',
-              items: [{ label: 'Ver pacientes' , routerLink : '/lista-pacientes' }]
+              items: [{ label: 'Ver pacientes', routerLink: '/lista-pacientes' }]
             },
             {
               label: 'Registar pacientes',
-              items: [{ label: 'Registrar paciente', routerLink:'/registrar-paciente' }],              
+              items: [{ label: 'Registrar paciente', routerLink: '/registrar-paciente' }],
             }
           ],
-          
+
         ]
       },
       {
         label: 'Turnos',
         icon: 'pi pi-fw pi-calendar-minus',
-        items: [
+        /*items: [
           [
             {
               label: 'User 1',
@@ -49,12 +49,12 @@ export class LayoutNavComponent {
             }
           ],
           
-        ]
+        ]*/
       },
       {
         label: 'Agendar cita',
         icon: 'pi pi-fw pi-calendar',
-        routerLink : '/agendar-cita'
+        routerLink: '/agendar-cita'
         /*items: [
           [
             {

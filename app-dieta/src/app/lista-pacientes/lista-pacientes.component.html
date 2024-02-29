@@ -1,4 +1,5 @@
 <layout-nav></layout-nav>
+
 <br>
 <div class="card">
     <p-table #dt1 [value]="pacientes" dataKey="idPaciente" [paginator]="true" [rows]="25" [showCurrentPageReport]="true"
@@ -20,64 +21,63 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                
-                <th style="width:15%">Nombre</th>
-                <th style="width:15%">Apellido</th>
-                <th style="width:10%">Genero</th>
-                <th style="width:15%">Celular</th>
-                <th style="width:25%">Correo</th>
-                <th style="width:6%"></th>
-                <th style="width:7%"></th>
-                <th style="width:7%"></th>
+                <th style="width:10%"></th>
+                <th style="width:30%">Nombre</th>
+                <th style="width:30%">Apellido</th>
+                <th style="width:10%"></th>
+                <th style="width:10%"></th>
+                <th style="width:10%"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-paciente>
             <tr>
+                <!--Visualizar paciente-->
+                <td>
+                    <div class="centrar">
+                        <p-button icon="pi pi-eye" [rounded]="true" [text]="true" [raised]="true"
+                            severity="success" (onClick)="goToeditarPaciente(paciente.idPaciente)">
+                        </p-button>
+                    </div>
+                </td>
                 <td>{{ paciente.primerNombre + " " + paciente.segundoNombre}}</td>
                 <td>{{ paciente.primerApellido + " " + paciente.segundoApellido}}</td>
-                <td>{{ paciente.genero }}</td>
-                <td>{{ paciente.numeroCelular }}</td>
-                <td>{{ paciente.correo }}</td>
-
                 <!--Agendar turno a paciente-->
                 <td>
-                    <p-button icon="pi pi-calendar-plus" [rounded]="true" [text]="true" [raised]="true" severity="help"
-                        (onClick)="goToAgendarPaciente(paciente.idPaciente)">
-                    </p-button>
+                    <div class="centrar">
+                        <p-button icon="pi pi-calendar-plus" [rounded]="true" [text]="true" [raised]="true"
+                            severity="help" (onClick)="goToAgendarPaciente(paciente.idPaciente)">
+                        </p-button>
+                    </div>
                 </td>
-               
+
                 <!--Editar paciente-->
                 <td>
-                    <p-button icon="pi pi-user-edit" [rounded]="true" [text]="true" [raised]="true" severity="success"
-                        (onClick)="goToeditarPaciente(paciente.idPaciente)">
-                    </p-button>
+                    <div class="centrar">
+                        <p-button icon="pi pi-user-edit" [rounded]="true" [text]="true" [raised]="true"
+                            severity="success" (onClick)="goToeditarPaciente(paciente.idPaciente)">
+                        </p-button>
+                    </div>
                 </td>
 
                 <!--Borrar paciente-->
                 <td>
-                    <div class="card flex justify-content-center gap-2">
-                        <p-toast></p-toast>
-                        <p-confirmPopup>
-                            <ng-template pTemplate="content" let-message>
-                                <div
-                                    class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3">
-
-                                    <p>{{ "¿Desea borrar el paciente?"}}</p>
-                                </div>
-                            </ng-template>
-                        </p-confirmPopup>
-
-                        <p-button (click)="confirm2($event, paciente.idPaciente)" icon="pi pi-times" [rounded]="true"
-                            [text]="true" [raised]="true" severity="danger ">
-
-                        </p-button>
-
+                    <div class="centrar">
+                        <div class="card flex justify-content-center gap-2">
+                            <p-toast></p-toast>
+                            <p-confirmPopup>
+                                <ng-template pTemplate="content" let-message>
+                                    <div
+                                        class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3">
+                                        <p>{{ "¿Desea borrar el paciente?"}}</p>
+                                    </div>
+                                </ng-template>
+                            </p-confirmPopup>
+                            <p-button (click)="confirm2($event, paciente.idPaciente)" icon="pi pi-times"
+                                [rounded]="true" [text]="true" [raised]="true" severity="danger ">
+                            </p-button>
+                        </div>
                     </div>
-
-
                 </td>
-
-
             </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">
